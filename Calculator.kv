@@ -1,11 +1,11 @@
 #Custom button 
 <CustButton@Button>: 
 	font_size: 32
-
 # Define id so I can refer to the CalcGridLayout 
 # class functions 
 # Display points to the entry widget 
 <Calc>: 
+	
 	id: calculator 
 	display: entry
 	rows: 7
@@ -82,36 +82,41 @@
 			on_press: entry.text += self.text 
 	
     BoxLayout: 
-        font_size: 10
+        spacing: 10
         CustButton: 
             text: "."
             on_press: entry.text += self.text
-        CustButton: 
-            text: "pow"
-            new:"**"
-            on_press: entry.text += self.new
-        CustButton: 
-            text: "sqrt"
-            new:  "**0.5"
-            on_press: calculator.calculate(entry.text+self.new)
-        CustButton: 
-            text: "cuberoot"
-            new:  "**(1/3)"
-            on_press: calculator.calculate(entry.text+self.new)
-    BoxLayout: 
-        spacing: 10
-        CustButton: 
-            text: "backspace"
-            on_release: entry.text = entry.text[:-1]
-        CustButton: 
-            text: "sin"
-            on_press: calculator.sind(entry.text) 
-		CustButton: 
-            text: "cos"
-            on_press: calculator.cosd(entry.text)
+        CustButton:
+			text: "1/x"  
+			on_press:  entry.text =str(1/int(entry.text))
 		CustButton:
 			text:"pi"
 			new:"3.1415926535897931"
 			on_press:  entry.text += self.new
+		CustButton: 
+            text: "back\nspace"
+            on_release: entry.text = entry.text[:-1]
+	
+	BoxLayout:
+		spacing:10
+		CustButton: 
+			text: "sin"
+			on_press: calculator.sind(entry.text) 
+		CustButton: 
+			text: "cos"
+			on_press: calculator.cosd(entry.text)
+		
+		CustButton: 
+			text: "pow"
+			new:"**"
+			on_press: entry.text += self.new
+		CustButton: 
+			text: "sqrt"
+			new:  "**0.5"
+			on_press: calculator.calculate(entry.text+self.new)
+		CustButton: 
+			text: "cuberoot"
+			new:  "**(1/3)"
+			on_press: calculator.calculate(entry.text+self.new)
 
 
